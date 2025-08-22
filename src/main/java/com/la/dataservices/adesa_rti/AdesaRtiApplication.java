@@ -1,11 +1,11 @@
-package com.la.dataservices.adessa_rti;
+package com.la.dataservices.adesa_rti;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AdessaRtiApplication {
+public class AdesaRtiApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(AdessaRtiApplication.class, args);
+		SpringApplication.run(AdesaRtiApplication.class, args);
 	}
 }

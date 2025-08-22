@@ -1,4 +1,4 @@
-package com.la.dataservices.adessa_rti;
+package com.la.dataservices.adesa_rti;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

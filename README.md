@@ -1,4 +1,4 @@
-# Adessa RTI – Azure Event Grid CloudEvents Webhook
+# adesa RTI – Azure Event Grid CloudEvents Webhook
 
 This Spring Boot service acts as an **Azure Event Grid** subscriber.  
 It exposes a **CloudEvents 1.0** webhook endpoint (`/events`) that:
@@ -20,7 +20,7 @@ mvn clean package
 mvn spring-boot:run -Dspring-boot.run.profiles=h2
 
 H2 console: http://localhost:8080/h2
-JDBC URL: jdbc:h2:mem:adessa, user: sa, password: (empty)
+JDBC URL: jdbc:h2:mem:adesa, user: sa, password: (empty)
 
 //Validation Handshake
 

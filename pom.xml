@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.la.dataservices</groupId>
-	<artifactId>adessa-rti</artifactId>
+	<artifactId>adesa-rti</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>adessa-rti</name>
-	<description>Adessa RTI Integration</description>
+	<name>adesa-rti</name>
+	<description>adesa RTI Integration</description>
 	<url/>
 	<properties>
 		<java.version>17</java.version>

@@ -14,4 +14,4 @@ server:
 logging:
   level:
     root: INFO
-    com.la.dataservices.adessa_rti: INFO
+    com.la.dataservices.adesa_rti: INFO

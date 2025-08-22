@@ -1,4 +1,4 @@
-package com.la.dataservices.adessa_rti;
+package com.la.dataservices.adesa_rti;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(AdessaRtiApplication.class);
+		return application.sources(com.la.dataservices.adesa_rti.AdesaRtiApplication.class);
 	}
 
 }
