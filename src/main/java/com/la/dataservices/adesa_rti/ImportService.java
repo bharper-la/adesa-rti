@@ -30,6 +30,7 @@ public class ImportService {
                 String eventId   = ev.getId();
                 String eventType = ev.getType();
                 String subject   = ev.getSubject();
+                String payload = ev.getData().toString();
 
                 Timestamp ts = null;
                 try {
@@ -38,7 +39,7 @@ public class ImportService {
                     }
                 } catch (Exception ignored) { /* leave ts null if parse fails */ }
 
-                eventImportRepository.save(EventImport.builder().eventId(eventId).eventType(eventType).subject(subject).build());
+                eventImportRepository.save(EventImport.builder().eventId(eventId).eventType(eventType).subject(subject).payload(payload).build());
 
                 // Convert payload into domain entity for additional processing
                 vehicleService.upsertFromCloudEvent(ev);
