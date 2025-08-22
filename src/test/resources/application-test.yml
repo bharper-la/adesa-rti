@@ -4,24 +4,21 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-
   jpa:
     hibernate:
-      ddl-auto: create-drop   # Hibernate creates ALL tables for tests/dev
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
         format_sql: true
         globally_quoted_identifiers: false
-
+  # Do NOT run schema.sql/data.sql during tests
   sql:
     init:
-      mode: never             # don't run schema*.sql while using Hibernate DDL
-
-spring.h2.console.enabled: true
-spring.h2.console.path: /h2
+      mode: never
 
 logging:
   level:
+    org.hibernate.tool.schema: debug   # see DDL creation clearly
     org.hibernate.SQL: debug
     org.hibernate.orm.jdbc.bind: trace

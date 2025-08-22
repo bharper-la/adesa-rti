@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://<HOST>:1433;databaseName=<DB>;encrypt=true;trustServerCertificate=true
+    username: <USER>
+    password: <PASSWORD>
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: dbo   # so JPA (if added later) targets dbo
+
+app:
+  import:
+    event-imports-table: lads.EventImports

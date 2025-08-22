@@ -1,11 +1,11 @@
-# adesa RTI – Azure Event Grid CloudEvents Webhook
+# ADESA RTI – Azure Event Grid CloudEvents Webhook
 
 This Spring Boot service acts as an **Azure Event Grid** subscriber.  
 It exposes a **CloudEvents 1.0** webhook endpoint (`/events`) that:
 
 - Handles Event Grid’s **validation handshake** (HTTP `OPTIONS`).
 - Accepts **CloudEvents batch notifications** (`POST`).
-- Asynchronously imports events into a database table `dbo.EventImports`.
+- Asynchronously imports events into a database table `lads.EventImports`.
 
 The project supports **SQL Server** (production) and **H2** (demo/testing).
 
@@ -39,6 +39,6 @@ curl -i -X POST http://localhost:8080/events \
     "subject":"items/42",
     "time":"2025-08-22T12:00:00Z",
     "datacontenttype":"application/json",
-    "data": { "id":"42", "name":"Widget" }
+    "data": { "id":"42", "vin":"1ABCD10001AB12345" }
   }]'
 

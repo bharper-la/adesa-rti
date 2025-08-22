@@ -1,0 +1,19 @@
+{
+  "id": "1ec49738-c7a5-465d-9e2d-eb226f10443d",
+  "source": "AdesaRealTimeInventory",
+  "type": "VehicleRemoved",
+  "data": {
+    "vehicleId": "82ea8e20-54a3-4f44-8426-09b2926122cc",
+    "eventDate": "2025-06-18T15:13:51.872568Z",
+    "vin": "JTDKB20U473286283",
+    "eventType": "vehicleRemoved"
+  },
+  "time": "2025-06-18T15:13:51.8746864+00:00",
+  "specversion": "1.0",
+  "dataschema": "https://rti.adesaintegrations.com/api/events#v1.0",
+  "datacontenttype": "application/json",
+  "subject": "v2",
+  "issimulcastonclear": false,
+  "traceparent": "00-4ebf5a398c71009dc8488b8102418263-b86346dc9810bb25-00",
+  "tracestate": ""
+}

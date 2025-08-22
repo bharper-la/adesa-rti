@@ -12,10 +12,13 @@ import java.util.List;
 @Service
 public class ImportService {
 
-    private final JdbcTemplate jdbc;
+    private final EventImportRepository eventImportRepository;
 
-    public ImportService(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
+    private final VehicleService vehicleService;
+
+    public ImportService(EventImportRepository eventImportRepository, VehicleService vehicleService) {
+        this.eventImportRepository = eventImportRepository;
+        this.vehicleService = vehicleService;
     }
 
     @Async("importExecutor")
@@ -35,11 +38,10 @@ public class ImportService {
                     }
                 } catch (Exception ignored) { /* leave ts null if parse fails */ }
 
-                // Adjust table/columns for your schema
-                jdbc.update("""
-          INSERT INTO dbo.EventImports (EventId, EventType, Subject, EventTimeUtc, Payload)
-          VALUES (?, ?, ?, ?, ?)
-        """, eventId, eventType, subject, ts, d != null ? d.toString() : null);
+                eventImportRepository.save(EventImport.builder().eventId(eventId).eventType(eventType).subject(subject).build());
+
+                // Convert payload into domain entity for additional processing
+                vehicleService.upsertFromCloudEvent(ev);
 
             } catch (Exception ex) {
                 // Consider logging to a dead-letter table for replay
