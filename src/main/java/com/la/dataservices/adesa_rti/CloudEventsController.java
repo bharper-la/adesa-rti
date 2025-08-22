@@ -29,7 +29,8 @@ public class CloudEventsController {
 
         // Echo allowed origin; set/echo a reasonable rate
         return ResponseEntity.ok()
-                .header("WebHook-Allowed-Origin", origin != null ? origin : "*")
+                .header("WebHook-Allowed-Origin", origin != null ? origin : "eventgrid.azure.net" +
+                        ". ")
                 .header("WebHook-Allowed-Rate", rate != null ? rate : "120")
                 .build();
     }
