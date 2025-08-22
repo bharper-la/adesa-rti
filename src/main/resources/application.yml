@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+#spring:
+#  datasource:
+#    url: jdbc:sqlserver://<HOST>:1433;databaseName=<DB>;encrypt=true;trustServerCertificate=true
+#    username: <USER>
+#    password: <PASSWORD>
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 2
+#      connection-timeout: 30000
+
+logging:
+  level:
+    root: INFO
+    com.la.dataservices.adessa_rti: INFO
