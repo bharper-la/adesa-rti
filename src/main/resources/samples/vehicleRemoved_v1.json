@@ -1,0 +1,16 @@
+{
+  "id": "822c86dc-eb53-5b93-ae05-f0d604b1eb08",
+  "source": "RTI",
+  "type": "VehicleRemoved",
+  "data": {
+    "eventType": "vehicleRemoved",
+    "eventDate": "2023-09-01T00:03:00-0700",
+    "vehicleId": 1122334455,
+    "vin": "1ABCD10001AB12345"
+  },
+  "time": "2023-09-01T00:03:00-0700",
+  "specVersion": "1.0",
+  "dataSchema": "https://real-time-inventory.adesaintegrations.com/api/events#v1.0",
+  "dataContentType": "application/json",
+  "subject": "v1"
+}
