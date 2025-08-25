@@ -54,7 +54,7 @@ class CloudEventsControllerIntegrationTest {
                 .contentType("application/cloudevents+json")
                 .content(body))
                 .andExpect(status().isOk());
-        //assertThat(vehicleRepository.findByVin("1ABCD10001AB12345")).isPresent();
+        assertThat(vehicleRepository.findByVin("1C6SRFJT1LN201690")).isPresent();
     }
 
     @Test
@@ -68,8 +68,8 @@ class CloudEventsControllerIntegrationTest {
         mockMvc.perform(post("/events").contentType("application/cloudevents+json").content(upd))
                 .andExpect(status().isOk());
 
-        //var veh = vehicleRepository.findByVin("1C6SRFJT1LN201690").orElseThrow();
-        //assertThat(veh.getMakeName()).isEqualTo("Lincoln");
+        var veh = vehicleRepository.findByVin("1C6SRFJT1LN201690").orElseThrow();
+        assertThat(veh.getMakeName()).isEqualTo("Ram");
     }
 
     @Test
