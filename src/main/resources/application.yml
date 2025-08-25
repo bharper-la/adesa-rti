@@ -18,6 +18,9 @@ spring:
     init:
       mode: never             # don't run schema*.sql while using Hibernate DDL
 
+  profiles:
+    active: "legacy-json"
+
 spring.h2.console.enabled: true
 spring.h2.console.path: /h2
 
