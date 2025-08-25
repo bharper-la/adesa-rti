@@ -22,3 +22,7 @@ logging:
     org.hibernate.tool.schema: debug   # see DDL creation clearly
     org.hibernate.SQL: debug
     org.hibernate.orm.jdbc.bind: trace
+
+auth:
+  header-name: X-Webhook-Secret   # fixed header name
+  secret: ${WEBHOOK_SECRET:secret}

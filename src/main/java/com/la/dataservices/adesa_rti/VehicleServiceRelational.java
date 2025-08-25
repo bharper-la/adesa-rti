@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@Profile("!legacy-json")
+//@Service
+//@Profile("!legacy-json")
 @RequiredArgsConstructor
 public class VehicleServiceRelational implements VehicleService {
 

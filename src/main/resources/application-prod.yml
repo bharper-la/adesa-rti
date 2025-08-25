@@ -16,3 +16,7 @@ spring:
 app:
   import:
     event-imports-table: lads.EventImports
+
+auth:
+  header-name: X-Webhook-Secret   # fixed header name
+  secret: ${WEBHOOK_SECRET:secret}

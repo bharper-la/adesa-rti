@@ -52,6 +52,7 @@ class CloudEventsControllerIntegrationTest {
 
         mockMvc.perform(post("/events")
                         .contentType("application/cloudevents+json")
+                        .header("X-Webhook-Secret", "secret")
                         .content(body))
                 .andExpect(status().isOk());
 
@@ -69,11 +70,17 @@ class CloudEventsControllerIntegrationTest {
     @DisplayName("VehicleUpdated v2 -> upserts Vehicle")
     void vehicleUpdated_v2_upserts() throws Exception {
         String add = load("samples/vehicleAdded_v2.json");
-        mockMvc.perform(post("/events").contentType("application/cloudevents+json").content(add))
+        mockMvc.perform(post("/events")
+                        .contentType("application/cloudevents+json")
+                        .header("X-Webhook-Secret", "secret")
+                        .content(add))
                 .andExpect(status().isOk());
 
         String upd = load("samples/vehicleUpdated_v2.json");
-        mockMvc.perform(post("/events").contentType("application/cloudevents+json").content(upd))
+        mockMvc.perform(post("/events")
+                        .contentType("application/cloudevents+json")
+                        .header("X-Webhook-Secret", "secret")
+                        .content(upd))
                 .andExpect(status().isOk());
 
         var veh = vehicleRepositoryJson.findByVin("4T3ZE11A19U005674").orElseThrow();
@@ -85,8 +92,32 @@ class CloudEventsControllerIntegrationTest {
     void vehicleRemoved_v2_accepts() throws Exception {
         String body = load("samples/vehicleRemoved_v2.json");
         mockMvc.perform(post("/events")
+                        .header("X-Webhook-Secret", "secret")
                         .contentType("application/cloudevents+json")
                         .content(body))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Secrity header valid")
+    void secureHeaderValid() throws Exception {
+        String body = load("samples/vehicleRemoved_v2.json");
+        mockMvc.perform(post("/events")
+                        .header("X-Webhook-Secret", "secret")
+                        .contentType("application/cloudevents+json")
+                        .content(body))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Secrity header valid")
+    void secureHeaderInvalid() throws Exception {
+        String body = load("samples/vehicleRemoved_v2.json");
+
+        mockMvc.perform(post("/events")
+                        .contentType("application/cloudevents+json")
+                        .content(body))
+                .andExpect(status().isUnauthorized());
+
     }
 }
