@@ -1,0 +1,20 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- %kvp renders SLF4J 2.x key–value pairs; %X renders MDC -->
+            <pattern>%d{ISO8601} %-5level [%thread] %logger{36} - %msg %kvp %X%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Optional: async appender for lower latency -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC"/>
+    </root>
+</configuration>
