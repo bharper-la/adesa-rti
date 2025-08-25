@@ -21,8 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@EntityScan(basePackageClasses = VehicleEntity.class)
-@EnableJpaRepositories(basePackageClasses = VehicleRepository.class)
 // If you put properties into application-test.yml, also:
 @ActiveProfiles("test")
 @org.springframework.context.annotation.Import(TestAsyncConfig.class)
