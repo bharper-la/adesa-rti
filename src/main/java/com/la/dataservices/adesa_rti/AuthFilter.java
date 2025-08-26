@@ -5,47 +5,73 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-class AuthFilter extends OncePerRequestFilter {
+public class AuthFilter extends OncePerRequestFilter {
 
-    private static final Logger log = LoggerFactory.getLogger(AuthFilter.class);
     private final AuthProps props;
+    private static final AntPathMatcher PATHS = new AntPathMatcher();
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest req) {
-        // secure only your webhook(s); everything else unchanged
-        String p = req.getRequestURI();
-        return !(p.startsWith("/events"));  // adjust as needed
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        // Only protect webhook endpoints
+        return !PATHS.match("/events/**", request.getRequestURI());
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws ServletException, IOException {
 
-        // Only guard webhook endpoint(s)
-        if (!req.getRequestURI().startsWith("/events")) {
-            chain.doFilter(req, res);
+        final String apiKeyHeaderName   = props.getApiKeyHeaderName();
+        final String secretHeaderName   = props.getHeaderName();
+        final Map<String, String> map   = props.getClients();
+
+        final String apiKey        = req.getHeader(apiKeyHeaderName);
+        final String providedSecret= req.getHeader(secretHeaderName);
+
+        // Must have a key
+        if (apiKey == null) {
+            res.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
             return;
         }
 
-        String expected = props.getSecret();
-        String provided = req.getHeader(props.getHeaderName());
-
-        if (expected == null || expected.isBlank() || !expected.equals(provided)) {
-            log.atInfo().setMessage("*** access denied ***").log();
-            res.setStatus(HttpStatus.UNAUTHORIZED.value());
+        // Must be a known key
+        final String expectedSecret = map != null ? map.get(apiKey) : null;
+        if (expectedSecret == null) {
+            res.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
             return;
         }
+
+        // Secret must match for that key (constant-time compare)
+        if (!equalsConstTime(providedSecret, expectedSecret)) {
+            res.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
+            return;
+        }
+
+        var auth = new UsernamePasswordAuthenticationToken(
+                apiKey, null, List.of(new SimpleGrantedAuthority("ROLE_WEBHOOK")));
+        auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
         chain.doFilter(req, res);
+    }
+
+    private boolean equalsConstTime(String a, String b) {
+        if (a == null || b == null) return false;
+        return MessageDigest.isEqual(a.getBytes(StandardCharsets.UTF_8), b.getBytes(StandardCharsets.UTF_8));
     }
 }

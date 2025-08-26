@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@Profile("!legacy-json")
+@Profile("relational")
 @EnableJpaRepositories(basePackageClasses = VehicleRepositoryJpa.class)
 @EntityScan(basePackageClasses = VehicleEntity.class)
 class RelationalJpaConfig { }

@@ -52,7 +52,8 @@ class CloudEventsControllerIntegrationTest {
 
         mockMvc.perform(post("/events")
                         .contentType("application/cloudevents+json")
-                        .header("X-Webhook-Secret", "secret")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "dev-secret")
                         .content(body))
                 .andExpect(status().isOk());
 
@@ -72,14 +73,16 @@ class CloudEventsControllerIntegrationTest {
         String add = load("samples/vehicleAdded_v2.json");
         mockMvc.perform(post("/events")
                         .contentType("application/cloudevents+json")
-                        .header("X-Webhook-Secret", "secret")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "dev-secret")
                         .content(add))
                 .andExpect(status().isOk());
 
         String upd = load("samples/vehicleUpdated_v2.json");
         mockMvc.perform(post("/events")
                         .contentType("application/cloudevents+json")
-                        .header("X-Webhook-Secret", "secret")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "dev-secret")
                         .content(upd))
                 .andExpect(status().isOk());
 
@@ -92,7 +95,8 @@ class CloudEventsControllerIntegrationTest {
     void vehicleRemoved_v2_accepts() throws Exception {
         String body = load("samples/vehicleRemoved_v2.json");
         mockMvc.perform(post("/events")
-                        .header("X-Webhook-Secret", "secret")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "dev-secret")
                         .contentType("application/cloudevents+json")
                         .content(body))
                 .andExpect(status().isOk());
@@ -103,7 +107,8 @@ class CloudEventsControllerIntegrationTest {
     void secureHeaderValid() throws Exception {
         String body = load("samples/vehicleRemoved_v2.json");
         mockMvc.perform(post("/events")
-                        .header("X-Webhook-Secret", "secret")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "dev-secret")
                         .contentType("application/cloudevents+json")
                         .content(body))
                 .andExpect(status().isOk());
@@ -117,7 +122,7 @@ class CloudEventsControllerIntegrationTest {
         mockMvc.perform(post("/events")
                         .contentType("application/cloudevents+json")
                         .content(body))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isForbidden());
 
     }
 }

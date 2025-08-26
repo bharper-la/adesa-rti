@@ -18,7 +18,8 @@ export const options = {
 };
 
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:8080';
-const SECRET   = __ENV.WEBHOOK_SECRET || 'secret';
+const SECRET   = __ENV.WEBHOOK_SECRET || 'dev-secret';
+const WEBHOOK_API_KEY   = __ENV.WEBHOOK_API_KEY || 'dev-api-key';
 
 export default function () {
     const body = randomItem(events); // random event each request
@@ -28,6 +29,7 @@ export default function () {
         headers: {
             'Content-Type': 'application/cloudevents+json',
             'X-Webhook-Secret': SECRET,
+            'X-Webhook-API-Key': WEBHOOK_API_KEY,
         },
     };
 

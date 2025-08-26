@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-//@Profile("legacy-json")
 @RequiredArgsConstructor
 public class VehicleServiceJson implements VehicleService {
 

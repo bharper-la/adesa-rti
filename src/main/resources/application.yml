@@ -31,5 +31,12 @@ logging:
     com.la.dataservices.adesa_rti: INFO
 
 auth:
-  header-name: X-Webhook-Secret
-  secret: ${WEBHOOK_SECRET:secret}
+  # header names
+  api-key-header-name: X-Webhook-API-Key
+  secret-header-name: X-Webhook-Secret  # (secret header)
+
+  # map of apiKey -> expected secret
+  clients:
+    dev-api-key: dev-secret
+    adesa: adesa-secret
+    partner-b-key: partner-b-secret

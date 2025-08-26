@@ -93,6 +93,10 @@ public class ImportService {
                     // Convert payload into domain entity for additional processing
                     vehicleService.upsertFromCloudEvent(ev);
 
+                    //if (applicationContext.getEnvironment().acceptsProfiles(Profiles.of("prod"))) {
+                    //    sqlServerStagingWriter.insertFromCloudEvent(ev);
+                    //}
+
                     long durMs = (System.nanoTime() - t0) / 1_000_000;
                     log.atInfo()
                             .setMessage("Event processed")

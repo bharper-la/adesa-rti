@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-//@Profile("legacy-json")
 @Component
 public interface VehicleRepositoryJson extends JpaRepository<VehicleEntityJson, Long> {
     Optional<VehicleEntityJson> findByVin(String vin);

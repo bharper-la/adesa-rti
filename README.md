@@ -41,4 +41,12 @@ curl -i -X POST http://localhost:8080/events \
     "datacontenttype":"application/json",
     "data": { "id":"42", "vin":"1ABCD10001AB12345" }
   }]'
+```
+### Smoke Testing
+```bash
+//minimal load testing
+cd src/main/resources/scripts/
+WEBHOOK_SECRET=dev-secret BASE_URL=http://localhost:8080 k6 run cloudevents_load_test.js
+```
+
 
