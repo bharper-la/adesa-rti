@@ -13,6 +13,18 @@ spring:
       hibernate:
         default_schema: dbo   # so JPA (if added later) targets dbo
 
+# dedicated staging writer datasource (SQL Server)
+staging:
+  datasource:
+    url: jdbc:sqlserver://la-db-devtst01.laserappraiserservices.com:1490;database=stag
+    username: your_user
+    password: your_password
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 0
+      pool-name: staging-writer
+
 app:
   import:
     event-imports-table: lads.EventImports

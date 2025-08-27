@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class SqlServerStagingWriter {
 
-    private final JdbcTemplate jdbc;
+    private final @Qualifier("stagingJdbcTemplate") JdbcTemplate jdbc;
     private final ObjectMapper mapper;
 
     // Keep the column list in sync with stag.adesa_json. If you add or remove columns in SQL,
