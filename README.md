@@ -45,6 +45,8 @@ curl -i -X POST http://localhost:8080/events \
 ### Smoke Testing
 ```bash
 //minimal load testing
+//LOCAL URL: http://localhost:8080
+//TST URL: https://tst.laserappraiserservices.com/adesa-rti/
 cd src/main/resources/scripts/
 WEBHOOK_SECRET=dev-secret BASE_URL=http://localhost:8080 k6 run cloudevents_load_test.js
 ```

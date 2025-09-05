@@ -1,5 +1,8 @@
 package com.la.dataservices.adesa_rti;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,7 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/events")
+@Tag(name = "Events", description = "Operations related to Adesa RTI event ingestion")
 public class CloudEventsController {
 
     private static final Logger log = LoggerFactory.getLogger(CloudEventsController.class);
@@ -24,6 +28,12 @@ public class CloudEventsController {
 
     public CloudEventsController(ImportService importService) {
         this.importService = importService;
+    }
+
+    @Operation(summary = "Simple Liveness Endpoint", description = "Responds with an HTTP 200")
+    @GetMapping("/ping")
+    public ResponseEntity<Void> ping() {
+        return ResponseEntity.ok().build(); // 200 OK, empty body
     }
 
     @RequestMapping(method = RequestMethod.OPTIONS)
@@ -37,6 +47,15 @@ public class CloudEventsController {
                 .build();
     }
 
+    @Operation(
+            summary = "Consume a new event",
+            description = "Accepts an RTI event payload and queues it for processing.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Event accepted"),
+                    @ApiResponse(responseCode = "400", description = "Invalid input"),
+                    @ApiResponse(responseCode = "500", description = "Server error")
+            }
+    )
     @PostMapping(consumes = { "application/cloudevents-batch+json", MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Void> handleBatch(@RequestBody CloudEvent[] events, HttpServletRequest request) {
 

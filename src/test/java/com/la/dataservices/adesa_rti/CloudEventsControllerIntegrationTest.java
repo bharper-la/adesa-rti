@@ -103,7 +103,7 @@ class CloudEventsControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Secrity header valid")
+    @DisplayName("Security header valid")
     void secureHeaderValid() throws Exception {
         String body = load("samples/vehicleRemoved_v2.json");
         mockMvc.perform(post("/events")
@@ -115,7 +115,19 @@ class CloudEventsControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Secrity header valid")
+    @DisplayName("Security header valid")
+    void secureHeaderInValid() throws Exception {
+        String body = load("samples/vehicleRemoved_v2.json");
+        mockMvc.perform(post("/events")
+                        .header("X-Webhook-API-Key", "dev-api-key")
+                        .header("X-Webhook-Secret", "non-secret")
+                        .contentType("application/cloudevents+json")
+                        .content(body))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("Security header valid")
     void secureHeaderInvalid() throws Exception {
         String body = load("samples/vehicleRemoved_v2.json");
 

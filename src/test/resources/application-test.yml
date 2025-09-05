@@ -15,7 +15,8 @@ spring:
   # Do NOT run schema.sql/data.sql during tests
   sql:
     init:
-      mode: never
+      mode: always
+      schema-locations: classpath:schema-h2.sql
 
 logging:
   level:

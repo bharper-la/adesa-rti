@@ -23,5 +23,7 @@ public class EventImport {
     private String subject;
     private Instant eventTimeUtc;
     @Lob private String payload;
+    private boolean staged = false;
+    private String batchId;
 }
 

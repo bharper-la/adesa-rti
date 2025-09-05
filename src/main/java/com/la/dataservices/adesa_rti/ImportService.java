@@ -19,10 +19,13 @@ public class ImportService {
 
     private final EventImportRepository eventImportRepository;
     private final VehicleService vehicleService;
+    private final StagingWriter stagingWriter;
 
-    public ImportService(EventImportRepository eventImportRepository, VehicleService vehicleService) {
+    public ImportService(EventImportRepository eventImportRepository, VehicleService vehicleService, StagingWriter stagingWriter) {
         this.eventImportRepository = eventImportRepository;
         this.vehicleService = vehicleService;
+        this.stagingWriter = stagingWriter;
+
     }
 
     @Async("importExecutor")
@@ -80,22 +83,27 @@ public class ImportService {
                             .addKeyValue("vin", vin)
                             .log();
 
-                    eventImportRepository.save(
+                    log.info("Registering event...");
+                    var saved = eventImportRepository.save(
                             EventImport.builder()
                                     .eventId(eventId)
                                     .eventType(eventType)
                                     .subject(subject)
                                     .eventTimeUtc(ts.toInstant())  // if your entity has this; otherwise remove
                                     .payload(payload)
+                                    .batchId(batchId)
                                     .build()
                     );
 
+                    log.info("Staging event...");
+                    stagingWriter.writeEventImport(saved);
+
+                    log.info("Event staged.");
+                    saved.setStaged(true);
+                    eventImportRepository.save(saved);
+
                     // Convert payload into domain entity for additional processing
                     vehicleService.upsertFromCloudEvent(ev);
-
-                    //if (applicationContext.getEnvironment().acceptsProfiles(Profiles.of("prod"))) {
-                    //    sqlServerStagingWriter.insertFromCloudEvent(ev);
-                    //}
 
                     long durMs = (System.nanoTime() - t0) / 1_000_000;
                     log.atInfo()

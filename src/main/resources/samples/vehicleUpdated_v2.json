@@ -3,7 +3,7 @@
   "source": "AdesaRealTimeInventory",
   "type": "VehicleUpdated",
   "data": {
-    "vehicleId": "68259da3-2183-49f3-bb94-18d0226aac5d",
+    "vehicleId": "2233445566",
     "auctionEndDate": "2025-06-18T19:00:00.0000000Z",
     "saleEventDate": "2025-06-16T18:43:54.4900000Z",
     "eventType": "vehicleUpdated",

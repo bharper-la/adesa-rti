@@ -40,8 +40,8 @@ public class AuthFilter extends OncePerRequestFilter {
         final String secretHeaderName   = props.getHeaderName();
         final Map<String, String> map   = props.getClients();
 
-        final String apiKey        = req.getHeader(apiKeyHeaderName);
-        final String providedSecret= req.getHeader(secretHeaderName);
+        final String apiKey         = req.getHeader(apiKeyHeaderName);
+        final String providedSecret = req.getHeader(secretHeaderName);
 
         // Must have a key
         if (apiKey == null) {

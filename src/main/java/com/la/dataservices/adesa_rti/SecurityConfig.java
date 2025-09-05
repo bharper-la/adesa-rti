@@ -37,6 +37,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/events", "/events/**").permitAll()
                         .requestMatchers("/events/**").permitAll()
 
+                        //ping endpoint
+                        .requestMatchers("/ping").permitAll()
+
                         // Everything else (adjust as needed)
                         .anyRequest().permitAll()
                 )

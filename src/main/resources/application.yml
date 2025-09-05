@@ -5,6 +5,26 @@ spring:
     username: sa
     password:
 
+  mail:
+    host: email-smtp.us-east-1.amazonaws.com
+    port: 587
+    username: YOUR_SES_SMTP_USERNAME   # replace with AWS SES SMTP user
+    password: YOUR_SES_SMTP_PASSWORD   # replace with AWS SES SMTP password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  profiles:
+    active: dev,legacy-json
+
+alerts:
+  #to: dev@wavisys.net
+  to: bradharper@laserappraiser.com
+  from: tst_server@wavisys.net
+  enabled: true
+
   jpa:
     hibernate:
       ddl-auto: create-drop   # Hibernate creates ALL tables for tests/dev
@@ -16,19 +36,17 @@ spring:
 
   sql:
     init:
-      mode: never             # don't run schema*.sql while using Hibernate DDL
-
-  profiles:
-    active: "legacy-json"
+      mode: always
+      schema-locations: classpath:schema-h2.sql
 
 spring.h2.console.enabled: true
 spring.h2.console.path: /h2
 
 logging:
   level:
-    org.hibernate.SQL: debug
-    org.hibernate.orm.jdbc.bind: trace
-    com.la.dataservices.adesa_rti: INFO
+    org.hibernate.SQL: info
+    org.hibernate.orm.jdbc.bind: info
+    com.la.dataservices.adesa_rti: info
 
 auth:
   # header names
@@ -38,5 +56,6 @@ auth:
   # map of apiKey -> expected secret
   clients:
     dev-api-key: dev-secret
-    adesa: adesa-secret
+    adesa-rti-test: adesa-rti-test
     partner-b-key: partner-b-secret
+

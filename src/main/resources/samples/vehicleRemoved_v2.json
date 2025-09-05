@@ -3,7 +3,7 @@
   "source": "AdesaRealTimeInventory",
   "type": "VehicleRemoved",
   "data": {
-    "vehicleId": "82ea8e20-54a3-4f44-8426-09b2926122cc",
+    "vehicleId": "1122334455",
     "eventDate": "2025-06-18T15:13:51.872568Z",
     "vin": "JTDKB20U473286283",
     "eventType": "vehicleRemoved"

@@ -1,34 +1,43 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://<HOST>:1433;databaseName=<DB>;encrypt=true;trustServerCertificate=true
-    username: <USER>
-    password: <PASSWORD>
+    url: jdbc:sqlserver://la-db-devtst01.laserappraiserservices.com:1490;database=udb_staging;encrypt=true;trustServerCertificate=true
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: wavis_db_app
+    password: ^5iNkAXk@i9T
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
       connection-timeout: 30000
-
   jpa:
+    hibernate:
+      ddl-auto: create-drop            # rely on SQL migration / pre-created schema
     properties:
-      hibernate:
-        default_schema: dbo   # so JPA (if added later) targets dbo
+      hibernate.default_schema: stag
+  sql:
+    init:
+      mode: never               # don't run H2 schema in prod
 
-# dedicated staging writer datasource (SQL Server)
+
+# Separate SQL Server datasource for the staging writer
 staging:
   datasource:
-    url: jdbc:sqlserver://la-db-devtst01.laserappraiserservices.com:1490;database=stag
-    username: your_user
-    password: your_password
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://la-db-devtst01.laserappraiserservices.com:1490;database=udb_staging;encrypt=true;trustServerCertificate=true
+    username: wavis_db_app
+    password: ^5iNkAXk@i9T
     hikari:
-      maximum-pool-size: 5
       minimum-idle: 0
-      pool-name: staging-writer
+      maximum-pool-size: 4
+      initialization-fail-timeout: -1
 
-app:
-  import:
-    event-imports-table: lads.EventImports
 
 auth:
-  header-name: X-Webhook-Secret   # fixed header name
-  secret: ${WEBHOOK_SECRET:secret}
+  # header names
+  api-key-header-name: X-Webhook-API-Key
+  secret-header-name: X-Webhook-Secret  # (secret header)
+
+  # map of apiKey -> expected secret
+  clients:
+    dev-api-key: dev-secret
+    adesa-rti-test: adesa-rti-secret
+    partner-b-key: partner-b-secret
