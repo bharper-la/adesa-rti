@@ -1,0 +1,21 @@
+meta {
+  name: Cloud Event : PING
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{protocol}}://{{host}}{{context}}events/ping
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/cloudevents-batch+json
+  X-Webhook-Secret: dev-secret
+  X-Webhook-API-Key: dev-api-key
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,307 @@
+meta {
+  name: Cloud Event : VehicleUpdated
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{protocol}}://{{host}}{{context}}events
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/cloudevents-batch+json
+  X-Webhook-Secret: dev-secret
+  X-Webhook-API-Key: dev-api-key
+}
+
+body:json {
+  [{
+    "id": "52ba4439-0dac-4d75-9f8f-f1083cc7b326",
+    "source": "AdesaRealTimeInventory",
+    "type": "VehicleUpdated",
+    "data": {
+      "vehicleId": "2233445566",
+      "auctionEndDate": "2025-06-18T19:00:00.0000000Z",
+      "saleEventDate": "2025-06-16T18:43:54.4900000Z",
+      "eventType": "vehicleUpdated",
+      "eventDate": "2025-06-18T15:43:47.8476729Z",
+      "vin": "4T3ZE11A19U005674",
+      "saleChannels": ["AdesaClear sale"],
+      "sellerName": "CARVANA Wholesale",
+      "year": 2009,
+      "makeName": "Toyota",
+      "modelName": "Venza",
+      "seriesName": "Base (A6)",
+      "bodyStyleName": "Suv",
+      "engineName": "4 Cylinder Gas",
+      "engineDisplacement": 2.7,
+      "cylinders": 4,
+      "transmission": "Automatic",
+      "drivetrain": "FrontWheelDrive",
+      "fuelType": "Gas",
+      "interiorColor": "Tan",
+      "exteriorColor": "Red",
+      "vehicleType": "SUV",
+      "mileage": 101187,
+      "unitOfMeasure": "Miles",
+      "odometerCondition": null,
+      "state": "MO",
+      "postalCode": "64012",
+      "currentHighBid": 510000,
+      "buyNowPrice": null,
+      "primaryImageUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141406733.jpg?v=1749567023.377",
+      "vehicleDetailUrl": "https://adesaclear.com/details/68259da3-2183-49f3-bb94-18d0226aac5d",
+      "imageViewerUrl": null,
+      "additionalVehicleImageUrls": [
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141406840.jpg?v=1749567031.627",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141417760.jpg?v=1749568034.273",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141417817.jpg?v=1749568039.5",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141421165.jpg?v=1749568387.23",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141425643.jpg?v=1749568842.423",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141428368.jpg?v=1749569125.393",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141426021.jpg?v=1749568877.013",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/imperfection-13072461.mp4?v=1749567006.12",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141406943.jpg?v=1749567040.807",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141420937.jpg?v=1749568364.36",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141422207.jpg?v=1749568497.537",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141430459.jpg?v=1749569347.653",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141407518.jpg?v=1749567095.86",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141412590.jpg?v=1749567547.51",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141407058.jpg?v=1749567052.707",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141412494.jpg?v=1749567541.203",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141412326.jpg?v=1749567525.963",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141418001.jpg?v=1749568056.337",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141407106.jpg?v=1749567057.783",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141431468.jpg?v=1749569444.783",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141407405.jpg?v=1749567083.213",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141420497.jpg?v=1749568319.5",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141431695.jpg?v=1749569468.32",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141406108.jpg?v=1749566971.703",
+        "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141431224.jpg?v=1749569420.01"
+      ],
+      "sellerAnnouncements": [],
+      "vehicleParts": [
+        "Adjustable Steering Wheel",
+        "Air Type - Multi-Zone A/C",
+        "Aux Input Jack",
+        "Cruise Control",
+        "Driver Airbag - Front",
+        "Fog Lights",
+        "Heated Mirrors",
+        "Heated Seats - Front Only",
+        "Interior Cargo Cover",
+        "Key Type - Smart",
+        "Passenger Airbag - Front",
+        "Power Liftgate",
+        "Power Locks",
+        "Power Mirrors",
+        "Power Seats - Driver and Passenger",
+        "Power Steering",
+        "Power Windows",
+        "Radio Equipment - AM/FM/CD",
+        "Rear Defrost",
+        "Roof Type - Hard Top",
+        "Satellite Radio",
+        "Side Airbags - Front",
+        "Side Airbags - Rear",
+        "Traction Control"
+      ],
+      "hasPriorPaintwork": null,
+      "sellerType": null,
+      "lotNumber": null,
+      "runNumber": null,
+      "lane": null,
+      "auctionVendor": "ADESA Kansas City",
+      "assetType": "Suv",
+      "saleEventType": null,
+      "damages": {
+        "damagesCount": "31",
+        "damagesAmount": null,
+        "items": [
+          {
+            "item": "Engine Gasket; Leak; Repair Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141439749.jpg?v=1749570264.6"
+          },
+          {
+            "item": "Suspension; Noise; Repair Required",
+            "photoUrl": null
+          },
+          {
+            "item": "Stabilizer Link - RR; Cracked; Replacement Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141437373.jpg?v=1749570020.867"
+          },
+          {
+            "item": "Door - LF; Mult Dents/Paint Dmg; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141415711.jpg?v=1749567839.88"
+          },
+          {
+            "item": "Door Belt Molding - LF; Mult Dents/No Paint Dmg; 3",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141415022.jpg?v=1749567773.427"
+          },
+          {
+            "item": "Mirror Housing - LF; Scratch Heavy; 1\" to 2\"",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141414627.jpg?v=1749567738.923"
+          },
+          {
+            "item": "Lift Gate; Inop; Repair Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141435764.jpg?v=1749569862.12"
+          },
+          {
+            "item": "Bumper - Rear; Cracked; 1/2\" to 1\"",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141420699.jpg?v=1749568341.107"
+          },
+          {
+            "item": "Wheel - LF; Mult Scratches/Light; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141413410.jpg?v=1749567617.25"
+          },
+          {
+            "item": "Fender - LF; Mult Dents/ PDR; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141414034.jpg?v=1749567677.85"
+          },
+          {
+            "item": "Door - LR; Mult Dents/Paint Dmg; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141416720.jpg?v=1749567939.9"
+          },
+          {
+            "item": "Door Belt Molding - LR; Mult Dents/No Paint Dmg; 2",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141416137.jpg?v=1749567884.41"
+          },
+          {
+            "item": "Qtr Panel - L; Mult Dents/ PDR; 3",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141417565.jpg?v=1749568016.92"
+          },
+          {
+            "item": "Tire - RR; Worn; Replacement Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141421402.jpg?v=1749568410.003"
+          },
+          {
+            "item": "Qtr Panel - R; Mult Dents/ PDR; 5",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141421951.jpg?v=1749568468.737"
+          },
+          {
+            "item": "Door - RR; Mult Dents/Paint Dmg; 3",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141423056.jpg?v=1749568584.627"
+          },
+          {
+            "item": "Mirror Housing - RF; Scratch Heavy; 4\" to 5\"",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141424469.jpg?v=1749568733.807"
+          },
+          {
+            "item": "Door - RF; Mult Dents/Paint Dmg; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141424106.jpg?v=1749568692.343"
+          },
+          {
+            "item": "Fender - RF; Mult Dents/ PDR; 2",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141425305.jpg?v=1749568811.203"
+          },
+          {
+            "item": "Roof; Hail Damage; 10 or more",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141426624.jpg?v=1749568937.237"
+          },
+          {
+            "item": "Roof - L; Dent/ PDR; 1/2\" to 1\"",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141414346.jpg?v=1749567711.07"
+          },
+          {
+            "item": "Drip Rail Molding - R; Missing; Replacement Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141426885.jpg?v=1749568966.573"
+          },
+          {
+            "item": "Hood; Mult Dents/Paint Dmg; 4",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141428516.jpg?v=1749569139.96"
+          },
+          {
+            "item": "Headlight - L; Faded; Repair Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141427610.jpg?v=1749569046.423"
+          },
+          {
+            "item": "Headlight - R; Faded; Repair Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141427757.jpg?v=1749569062.577"
+          },
+          {
+            "item": "Bumper - Front; Mult Dents/Paint Dmg; 3",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141430333.jpg?v=1749569336.22"
+          },
+          {
+            "item": "Dash Panel; Broken; Replacement Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141410076.jpg?v=1749567329.44"
+          },
+          {
+            "item": "Glove Box Door; Broken; Replacement Required",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141409010.jpg?v=1749567230.023"
+          },
+          {
+            "item": "Seat Cushion - LF; Worn; Acceptable",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141411197.jpg?v=1749567427.45"
+          },
+          {
+            "item": "Seat Back - LR; Torn; 1/8\" to 1/2\"",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141419329.jpg?v=1749568191.537"
+          },
+          {
+            "item": "Seat Back - RR; Stained; Permanent",
+            "photoUrl": "https://vexgateway.fastly.carvana.io/vex-4720412/details/feature-141418906.jpg?v=1749568146.383"
+          }
+        ]
+      },
+      "openEqualsReserve": null,
+      "rlLBListingCategory": null,
+      "vehicleGrade": 1.8,
+      "isAutoGrade": true,
+      "titleState": null,
+      "frameDamage": 0,
+      "tires": [
+        "LeftFront;Alloy;8/32\";Goodyear;;19\";245/55/V",
+        "LeftRear;Alloy;6/32\";Goodyear;;19\";245/55/V",
+        "RightFront;Alloy;9/32\";Goodyear;;19\";245/55/V",
+        "RightRear;Alloy;3/32\";Goodyear;;19\";245/55/V"
+      ],
+      "inTransitIndicator": null,
+      "adesaAssurance": null,
+      "autoCheck": null,
+      "inspectionDate": null,
+      "inspectionCompany": null,
+      "inspectionComments": "hail on roof",
+      "structuralDamage": "No",
+      "drivable": "Yes",
+      "odors": null,
+      "keys": "2 Keys Present",
+      "remotes": null,
+      "manuals": null,
+      "firstRun": null,
+      "lastRun": null,
+      "pdi": null,
+      "psi": null,
+      "priceReduced": null,
+      "thirdPartyCRExists": null,
+      "country": 1,
+      "saleEventId": null,
+      "autobidStartTime": null,
+      "psiEligibilityAutobid": null,
+      "trim": null,
+      "priceUpdated": null,
+      "stockNumber": null,
+      "highValueOptions": null,
+      "doors": null,
+      "statements": null,
+      "smokedIn": null,
+      "testDriven": null,
+      "amsSiteId": null
+    },
+    "time": "2025-06-18T15:44:23.9932784+00:00",
+    "specversion": "1.0",
+    "dataschema": "https://rti.adesaintegrations.com/api/events#v1.0",
+    "datacontenttype": "application/json",
+    "subject": "v2",
+    "issimulcastonclear": false,
+    "traceparent": "00-d9631a059658d4730cd2eaa328582874-8db81095da725d20-00",
+    "tracestate": ""
+  }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
